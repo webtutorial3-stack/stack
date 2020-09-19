@@ -47,7 +47,7 @@
                                         <h5>{{ rs.product }} {{ rs.variant.size }}</h5>
                                     </td>
                                     <td class="p-price first-row">${% if rs.product.variant == 'None' %}
-                                ${{ rs.product.price }}
+                                {{ rs.product.price }}
                                 {% else %}
                                 {{ rs.variant.price }}
                                 {% endif %}</td>

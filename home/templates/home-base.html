@@ -1,0 +1,358 @@
+{% load static %}
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block description %}   {{ setting.description}}  {% endblock %}">
+    <meta name="keywords" content="{% block keywords %}   {{ setting.keywords}}  {% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}   {{ setting.title}}  {% endblock %}</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="icon" href="{% static 'website/img/icons/favicon-96x96.png' %}" type="image/gif" sizes="96x96">
+    <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/themify-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}" type="text/css">
+</head>
+    <style>
+        
+        /* Hide scrollbar for Chrome, Safari and Opera */
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+    
+    </style>   
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        {{ setting.email}}
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                       {{ setting.phone}}  
+                            |    
+                       Free shipping for Orders over 100$
+                    </div>
+                </div>
+                
+                <div class="ht-right">
+                    {% if user.id is not None %}
+                    <a href="/logout/" class="login-panel"><i class="fa fa-user"></i>Logout</a>
+                      {% else  %}
+                    <a href="/login/" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    /
+                    <a href="/signup/" class="login-panel"><i class=""></i>Signup</a>
+                    {% endif %}
+                    <div class="lan-selector">
+                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                            <option value='yt' data-image="{% static 'website/img/flag-1.jpg' %}" data-imagecss="flag yt"
+                                data-title="English">English</option>
+                            <option value='yu' data-image="{% static 'website/img/flag-2.jpg' %}" data-imagecss="flag yu"
+                                data-title="Bangladesh">German </option>
+                        </select>
+                    </div>
+                    <div class="top-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                        <a href="#"><i class="ti-linkedin"></i></a>
+                        <a href="#"><i class="ti-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="/home/">
+                            <img src="{% static 'website/img/logos.jpg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                            <button type="button" class="category-btn">All Categories</button>
+                            <div class="input-group">
+                                <form action="/search/" method="post">
+                                     {% csrf_token %}
+                                                            <input id="query" name="query" type="text" placeholder="What do yo u need?">
+                                <button type="submit"><i class="ti-search"></i></button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="heart-icon">
+                                <a href="#">
+                                    <i class="icon_heart_alt"></i>
+                                    <span>1</span>
+                                </a>
+                            </li>
+                            <li class="cart-icon">
+                                <a href="#">
+                                    <i class="icon_bag_alt"></i>
+                                    
+                                    
+                                    <span></span>
+                                </a>
+                                <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                                   {% for rs in shopcart %}
+                                                <tr>
+                                                    <td class="si-pic"><img src="{{ rs.product.image.url }}" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>${% if rs.product.variant == 'None' %}
+                                ${{ rs.product.price }}
+                                {% else %}
+                                {{ rs.variant.price }}
+                                {% endif %}
+ x {{ rs.quantity}}</p>
+                                                            <h6>{{ rs.product }} </h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close"><a href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete!! Are you sure?')">
+                                                        <i class="ti-close"></i></a>
+                                                    </td>
+                                                </tr>
+                                               {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="select-total">
+                                        <span>total:</span>
+                                        <h5>${{ total }}</h5>
+                                    </div>
+                                    <div class="select-button">
+                                        <a href="/shopcart/" class="primary-btn view-card">VIEW CARD</a>
+                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="cart-price">${{ total }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <div class="nav-depart">
+                    <div class="depart-btn">
+                        <i class="ti-menu"></i>
+                        <span>All departments</span>
+                        {% load myapptags %}
+                        {% categorylist as category %}
+                        {% load mptt_tags %}
+                        <ul class="depart-hover" style="height: 350px; overflow: auto;  ">
+                            <li class="active"><a href="/category/">All Products</a></li>
+                             {% recursetree category %}
+                        <li ><a href="/category/{{node.id }}/{{ node.slug }}"> {{ node.title }}</a></li>
+                        {% endrecursetree %}
+                        </ul>
+                    </div>
+                </div>
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="/home/">Home</a></li>
+                        <li><a href="/category/">Shop</a></li>
+                        <li><a href="category">Collection</a>
+<!--
+                            <ul class="dropdown">
+                                <li><a href="#">Men's</a></li>
+                                <li><a href="#">Women's</a></li>
+                                <li><a href="#">Kid's</a></li>
+                            </ul>
+-->
+                        </li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/home/">Pages</a>
+<!--
+                            <ul class="dropdown">
+                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                <li><a href="./check-out.html">Checkout</a></li>
+                                <li><a href="./faq.html">Faq</a></li>
+                                <li><a href="./register.html">Register</a></li>
+                                <li><a href="./login.html">Login</a></li>
+                            </ul>
+-->
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+             <div class="nav-item">
+            <div class="container">
+               
+                
+                
+                
+                <nav class="nav-menu mobile-menu">
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                     
+                        
+                        <h5>{{ setting.references | safe }} </h5>
+                    </div>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    
+    
+{% block content %}
+
+
+{% endblock %}
+    
+    
+    
+      <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href="/home/">                            <img src="{% static 'website/img/logos.jpg' %}" alt="">
+</a>
+                        </div>
+                        <ul>
+                            <li>Address:   {{ setting.address }}</li>
+                            <li>Phone:   {{ setting.phone }}</li>
+                            <li>Email:   {{ setting.email }}</li>
+                        </ul>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="/about/">About Us</a></li>
+                            <li><a href="/shopcart/">Checkout</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                            <li><a href="/faq/">Faq</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>My Account</h5>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                            <li><a href="/shopcart/">Shopping Cart</a></li>
+                            <li><a href="/category/">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Join Our Newsletter Now</h5>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                      
+                        <div class="payment-pic">
+                            <img src="img/payment-method.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'website/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'website/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'website/js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'website/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'website/js/jquery.zoom.min.js' %}"></script>
+    <script src="{% static 'website/js/jquery.dd.min.js' %}"></script>
+    <script src="{% static 'website/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'website/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'website/js/main.js' %}"></script>
+    
+    
+<!-- Begin of Chaport Live Chat code -->
+<script type="text/javascript">
+(function(w,d,v3){
+w.chaportConfig = {
+  appId : '5f5bff2ca35a5571db096f41'
+};
+
+if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+</script>
+<!-- End of Chaport Live Chat code -->
+ <!-- GetButton.io widget -->
+<script type="text/javascript">
+    (function () {
+        var options = {
+            whatsapp: "+1 (510) 991-22-24", // WhatsApp number
+            call_to_action: "Order Live on Whatsapp Now", // Call to action
+            position: "left", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- /GetButton.io widget -->   
+    
+</body>
+
+</html>

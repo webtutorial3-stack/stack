@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'ckeditor',
     'mptt',
+    'robots'
 ]
 
 MIDDLEWARE = [
@@ -154,9 +157,9 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-
-EMAIL_HOST_USER = ''
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'damyesus@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com.'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'damyesus@2020'

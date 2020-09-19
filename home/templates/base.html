@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="icon" href="{% static 'website/img/icons/icons.png' %}" type="image/gif" sizes="16x16">
+    <link rel="icon" href="{% static 'website/img/icons/favicon-96x96.png' %}" type="image/gif" sizes="96x96">
     <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'website/css/font-awesome.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'website/css/themify-icons.css' %}" type="text/css">
@@ -55,7 +55,9 @@
                     </div>
                     <div class="phone-service">
                         <i class=" fa fa-phone"></i>
-                       {{ setting.phone}}
+                       {{ setting.phone}}  
+                            |    
+                       Free shipping for Orders over 100$
                     </div>
                 </div>
                 
@@ -90,7 +92,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="/home/">
-                            <h2> {{ setting.title}} !!!</h2>
+                            <img src="{% static 'website/img/logos.jpg' %}" alt="">
                             </a>
                         </div>
                     </div>
@@ -212,6 +214,23 @@
                 <div id="mobile-menu-wrap"></div>
             </div>
         </div>
+             <div class="nav-item">
+            <div class="container">
+               
+                
+                
+                
+                <nav class="nav-menu mobile-menu">
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                     
+                        
+                        <h5>{{ setting.references | safe }} </h5>
+                    </div>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
     </header>
     <!-- Header End -->
     
@@ -230,7 +249,8 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <a href="/home/"><h2> {{ setting.title}} !!!</h2></a>
+                            <a href="/home/">                            <img src="{% static 'website/img/logos.jpg' %}" alt="">
+</a>
                         </div>
                         <ul>
                             <li>Address:   {{ setting.address }}</li>

@@ -16,22 +16,35 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from home import views
 from order import views as OrderViews
 from user import views as UserViews
+from home.sitemaps import ProductSitemap, StaticViewSitemap, CategorySitemap
+
+sitemaps = {
+    'Products' : ProductSitemap,
+    'static': StaticViewSitemap,
+    'category': CategorySitemap,
+}
 
 
 urlpatterns = [
 
     path('', include('home.urls')),
     path('home/', include('home.urls')),
+    path('robots.txt', include('robots.urls')),
     path('product/', include('product.urls')),
     path('order/', include('order.urls')),
     path('user/', include('user.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
+
 
     path('shopcart/', OrderViews.shopcart, name='shopcart'),
     # path('ajaxtest/', views.ajaxtest, name='ajaxtest'),

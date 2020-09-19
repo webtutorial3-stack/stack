@@ -106,8 +106,6 @@ def shop(request):
     return render(request, 'category.html', context)
 
 
-
-
 def category_products(request, id, slug):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
