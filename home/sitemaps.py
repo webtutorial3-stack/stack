@@ -23,7 +23,8 @@ class ProductSitemap(Sitemap):
 
 
 class StaticViewSitemap(Sitemap):
-
+    protocol = "https"
+    
     def items(self):
         return [
             'home',

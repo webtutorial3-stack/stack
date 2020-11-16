@@ -24,8 +24,8 @@ def home(request):
     current_user = request.user
     products_slider = Product.objects.all().order_by('?')[:1]
     products = Product.objects.all().order_by('?')[:8]
-    products_slider1 = Product.objects.all().order_by('-id')
-    products_slider2 = Product.objects.all().order_by('?')[:6]
+    products_slider1 = Product.objects.all().order_by('?')[:3]
+    products_slider2 = Product.objects.all().order_by('?')[:3]
     products_latest = Product.objects.all().order_by('?')[:3]
     products_picked = Product.objects.all().order_by('?')[:8]
     products_top = Product.objects.all().order_by('?')[:3]

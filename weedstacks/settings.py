@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'ckeditor',
     'mptt',
-    'robots'
 ]
 
 MIDDLEWARE = [

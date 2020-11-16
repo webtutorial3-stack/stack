@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}  {{ setting.title}}  {% endblock %}
-{% block keywords %}   {{ setting.keywords}}  {% endblock %}
+{% block title %}  {{ category.title}}  {% endblock %}
+{% block description %} {{ category.description}}  {% endblock %}
+{% block keywords %}   {{ category.keywords}}  {% endblock %}}
+
 
 
 {% block content %}
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "name": "Weed Products",
+    "description": "Buy weed strains online in the UK  Order your Vape Pens and Catridges,Cannabis, weed Edibles and Weed Flowers from the best online dispensary in the UK",
+  
+}
+</script>
 
 
     <!-- Breadcrumb Section Begin -->
@@ -41,34 +52,19 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
+                                                      {% load myapptags %}
+                        {% categorylist as category %}
+                        {% load mptt_tags %}
+                              {% recursetree category %}
                             <div class="bc-item">
                                 <label for="bc-calvin">
-                                    Calvin Klein
+                                    {{ node.title }}
                                     <input type="checkbox" id="bc-calvin">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <div class="bc-item">
-                                <label for="bc-diesel">
-                                    Diesel
-                                    <input type="checkbox" id="bc-diesel">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-polo">
-                                    Polo
-                                    <input type="checkbox" id="bc-polo">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-tommy">
-                                    Tommy Hilfiger
-                                    <input type="checkbox" id="bc-tommy">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+                            {% endrecursetree %}
+                            
                         </div>
                     </div>
                     <div class="filter-widget">
@@ -192,8 +188,8 @@
                                             <h5>{{ rs.title }}</h5>
                                         </a>
                                         <div class="product-price">
-                                            ${{ rs.price }}
-                                            <span>${{ rs.price }}</span>
+                                             £{{ rs.price }}
+                                            <span> £{{ rs.price }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -203,9 +199,19 @@
                     </div>
                     <div class="loading-more">
                         <i class="icon_loading"></i>
-                        <a href="#">
-                            Loading More
-                        </a>
+      {% if products.has_previous %}
+            <a href="?page=1">&laquo; </a>
+            <a href="?page={{ products.previous_page_number }}">back</a>
+        {% endif %}
+
+        <b class="current">
+             {{ products.number }} of {{ products.paginator.num_pages }}  -
+        </b>
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}">next -</a>
+            <a href="?page={{ products.paginator.num_pages }}">last </a>
+        {% endif %}
                     </div>
                 </div>
             </div>

@@ -46,7 +46,7 @@
                                     <td class="cart-title first-row">
                                         <h5>{{ rs.product }} {{ rs.variant.size }}</h5>
                                     </td>
-                                    <td class="p-price first-row">${% if rs.product.variant == 'None' %}
+                                    <td class="p-price first-row"> £{% if rs.product.variant == 'None' %}
                                 {{ rs.product.price }}
                                 {% else %}
                                 {{ rs.variant.price }}
@@ -58,8 +58,8 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="total-price first-row">${% if rs.product.variant == 'None' %}
-                                ${{ rs.amount }}
+                                    <td class="total-price first-row"> £{% if rs.product.variant == 'None' %}
+                                 £{{ rs.amount }}
                                 {% else %}
                                 {{ rs.varamount }}
                                         
@@ -88,8 +88,8 @@
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                 <ul>
-                                    <li class="subtotal">Subtotal <span>${{ total }}</span></li>
-                                    <li class="cart-total">Total <span>${{ total }}</span></li>
+                                    <li class="subtotal">Subtotal <span> £{{ total }}</span></li>
+                                    <li class="cart-total">Total <span> £{{ total }}</span></li>
                                 </ul>
                                 <a href="/order/orderproduct" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>

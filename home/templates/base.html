@@ -3,11 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="{% block description %}   {{ setting.description}}  {% endblock %}">
-    <meta name="keywords" content="{% block keywords %}   {{ setting.keywords}}  {% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}   {{ setting.title}}  {% endblock %}</title>
+    <title>BUYWEEDSONLINE</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -57,7 +55,7 @@
                         <i class=" fa fa-phone"></i>
                        {{ setting.phone}}  
                             |    
-                       Free shipping for Orders over 100$
+                       Free shipping for Orders over  £100
                     </div>
                 </div>
                 
@@ -92,7 +90,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="/home/">
-                            <img src="{% static 'website/img/logos.jpg' %}" alt="">
+                            <img src="{% static 'website/img/weed.png' %}" alt="">
                             </a>
                         </div>
                     </div>
@@ -132,8 +130,8 @@
                                                     <td class="si-pic"><img src="{{ rs.product.image.url }}" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
-                                                            <p>${% if rs.product.variant == 'None' %}
-                                ${{ rs.product.price }}
+                                                            <p> £{% if rs.product.variant == 'None' %}
+                                 £{{ rs.product.price }}
                                 {% else %}
                                 {{ rs.variant.price }}
                                 {% endif %}
@@ -151,15 +149,15 @@
                                     </div>
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>${{ total }}</h5>
+                                        <h5> £{{ total }}</h5>
                                     </div>
                                     <div class="select-button">
-                                        <a href="/shopcart/" class="primary-btn view-card">VIEW CARD</a>
+                                        <a href="/shopcart/" class="primary-btn view-card">VIEW CART</a>
                                         <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
                                     </div>
                                 </div>
                             </li>
-                            <li class="cart-price">${{ total }}</li>
+                            <li class="cart-price"> £{{ total }}</li>
                         </ul>
                     </div>
                 </div>
@@ -195,6 +193,9 @@
                             </ul>
 -->
                         </li>
+                        <li><a href="/faq/">Faq</a></li>
+                        <li><a href="/faq/">How to Order</a></li>
+                        <li><a href="/pay/">How to Pay</a></li>
                         <li><a href="/about/">About</a></li>
                         <li><a href="/contact/">Contact</a></li>
                         <li><a href="/home/">Pages</a>

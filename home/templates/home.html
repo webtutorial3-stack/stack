@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}  {{ setting.title}}  {% endblock %}
-{% block keywords %}   {{ setting.keywords}}  {% endblock %}
+
 
 
 {% block content %}
@@ -16,7 +15,7 @@
                         <div class="col-lg-5">
                             <span>{{ rs.category }}</span>
                             <h1>{{ rs.title }}</h1>
-                            <p>{{ rs.price }}</p>
+                            <p>£{{ rs.price }}</p>
                             <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="primary-btn">Shop Now</a>
                         </div>
                     </div>
@@ -26,7 +25,59 @@
                 </div>
             </div>
             {% endfor %}
-            
+   
+      <script type='application/ld+json'>
+{
+  "@context": "http://www.schema.org",
+  "@type": "Webpage",
+  "name": "Buy Weed Online In The UK | Weed Store",
+  "url": "https://buyweedsonline.co.uk/",
+  "logo": "https://buyweedsonline.co.uk/media/images/weed.png",
+  "image": "https://buyweedsonline.co.uk/media/images/weed.png",
+  "description": "Buy weed online in the UK,and order the  cannabis in the UK from the best online dispensary in the UK, Buy different types of weed strains online in the UK From our online store, Buy Catridges in the uk, Buy CBD Oil in the UK and more in the Uk",
+   "openingHours": "Mo 12:00-12:00 Tu 12:00-12:00 We 12:00-12:00 Th 12:00-12:00 Fr 12:00-12:00 Sa 12:00-12:00 Su 12:00-12:00",
+  "telephone": "+1-831-200-4219"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "https://buyweedsonline.co.uk/category/1/weed-flowers",
+      "name": "Weed Strains",
+      "image": "https:/buyweedsonline.co.uk/media/images/weed.png"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "https://https://buyweedsonline.co.uk/category/9/weed-vape-pens-cartridges",
+      "name": "Vape Pens and Catridges",
+      "image": "https://buyweedsonline.co.uk/media/images/weed.png"
+    }
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "item": {
+      "@id": "https://buyweedsonline.co.uk/category/6/weed-pre-rolls",
+      "name": "Weed Pre Rolled Joints",
+      "image": "https://buyweedsonline.co.uk/media/images/weed.png"
+    }
+  }{
+    "@type": "ListItem",
+    "position": 4,
+    "item": {
+      "@id": "https://buyweedsonline.co.uk/category/6/weed-pre-rolls",
+      "name": "CBD Products",
+      "image": "https://buyweedsonline.co.uk/media/images/weed.png"
+    }
+  }]
+}
+</script>      
 <!--
             <div class="single-hero-items set-bg" data-setbg="{% static 'website/img/hero-2.jpg' %}">
                 <div class="container">
@@ -127,8 +178,8 @@
                                     <h5>{{ rs.title }}</h5>
                                 </a>
                                 <div class="product-price">
-                                    ${{ rs.price }}
-                                    <span>${{ variant.price }}</span>
+                                     £{{ rs.price }}
+                                    <span> £{{ variant.price }}</span>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +205,7 @@
                         And get 30% OFF </p>
                     
                     <div class="product-price">
-                        ${{ rs.price }}
+                         £{{ rs.price }}
                         <span>/ {{ rs.title }}</span>
                     </div>
                 </div>
@@ -220,8 +271,8 @@
                                     <h5>{{ rs.title }}</h5>
                                 </a>
                                 <div class="product-price">
-                                    ${{ rs.price }}
-                                    <span>${{ variant.price }}</span>
+                                     £{{ rs.price }}
+                                    <span> £{{ variant.price }}</span>
                                 </div>
                             </div>
                         </div>
@@ -346,7 +397,7 @@
                             </div>
                             <div class="sb-text">
                                 <h6>Free Shipping</h6>
-                                <p>For all order over 99$</p>
+                                <p>For all order over  £99</p>
                             </div>
                         </div>
                     </div>

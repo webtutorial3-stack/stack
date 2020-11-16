@@ -34,7 +34,6 @@ urlpatterns = [
 
     path('', include('home.urls')),
     path('home/', include('home.urls')),
-    path('robots.txt', include('robots.urls')),
     path('product/', include('product.urls')),
     path('order/', include('order.urls')),
     path('user/', include('user.urls')),

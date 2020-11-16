@@ -97,13 +97,13 @@
                                       {% for rs in shopcart %}
                                     <li>{{ rs.product }} {{ rs.variant.size }} <span>Total</span></li>
                                     <li class="fw-normal">{% if rs.product.variant == 'None' %}
-                                ${{ rs.product.price }}
+                                 £{{ rs.product.price }}
                                 {% else %}
                                 {{ rs.variant.price }}
-                                {% endif %} x {{ rs.quantity}} <span>${% if rs.product.variant == 'None' %}
-                                ${{ rs.amount }}
+                                {% endif %} x {{ rs.quantity}} <span> £{% if rs.product.variant == 'None' %}
+                                 £{{ rs.amount }}
                                 {% else %}
-                                {{ rs.varamount }}
+                                £{{ rs.varamount }}
                                 {% endif %}</span></li>
                                     {% endfor %}
                                    
