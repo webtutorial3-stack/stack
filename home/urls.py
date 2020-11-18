@@ -3,18 +3,17 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from home import views
-from .sitemaps import ProductSitemap, StaticViewSitemap, CategorySitemap
+from .sitemaps import StaticViewSitemap
 
 sitemaps = {
-    'product' : ProductSitemap,
+
     'static': StaticViewSitemap,
-    'category': CategorySitemap,
 
 }
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('home/', views.home, name="home"),
+    path('index/', views.home, name="home"),
     path('order_confirmation/', views.order_confirmation, name="order_confirmation"),
     path('about/', views.aboutus, name='aboutus'),
     path('contact/', views.contactus, name='contact'),

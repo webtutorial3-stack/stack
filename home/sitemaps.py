@@ -1,25 +1,25 @@
 from django.contrib.sitemaps import Sitemap
-from product.models import Category, Product
+
 from django.shortcuts import reverse
 
 
 
-class CategorySitemap(Sitemap):
+#class CategorySitemap(Sitemap):
+#    changefreq = "daily"
+#    priority = 0.8
+#    protocol = "https"
+#
+#    def items(self):
+#        return Category.objects.all()
+#
+#
+class StaticViewSitemap(Sitemap):
     changefreq = "daily"
     priority = 0.8
     protocol = "https"
 
     def items(self):
-        return Category.objects.all()
-
-
-class ProductSitemap(Sitemap):
-    changefreq = "daily"
-    priority = 0.8
-    protocol = "https"
-
-    def items(self):
-        return Product.objects.all()
+        return item.objects.all()
 
 
 class StaticViewSitemap(Sitemap):

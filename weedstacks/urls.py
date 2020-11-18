@@ -21,19 +21,16 @@ from django.urls import path, include
 from home import views
 from order import views as OrderViews
 from user import views as UserViews
-from home.sitemaps import ProductSitemap, StaticViewSitemap, CategorySitemap
+from home.sitemaps import StaticViewSitemap
 
 sitemaps = {
-    'Products' : ProductSitemap,
     'static': StaticViewSitemap,
-    'category': CategorySitemap,
 }
 
 
 urlpatterns = [
 
     path('', include('home.urls')),
-    path('home/', include('home.urls')),
     path('product/', include('product.urls')),
     path('order/', include('order.urls')),
     path('user/', include('user.urls')),
